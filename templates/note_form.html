@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if form_type == 'create' %}新增筆記{% else %}編輯筆記{% endif %} - 筆記應用
+{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">{% if form_type == 'create' %}新增筆記{% else %}編輯筆記{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_title" class="form-label">標題:</label>
+            <input type="text" class="form-control" id="id_title" name="title" value="{{ note.title|default_if_none:'' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_content" class="form-label">內容:</label>
+            <textarea class="form-control" id="id_content" name="content" rows="10" required>{{ note.content|default_if_none:'' }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">儲存</button>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">取消</a>
+    </form>
+{% endblock %}

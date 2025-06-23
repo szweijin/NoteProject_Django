@@ -1,0 +1,143 @@
+/* static/css/style.css */
+
+/* 通用樣式 */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa; /* 淺灰色背景 */
+    color: #343a40; /* 深灰色文字 */
+}
+
+/* 導覽列樣式 */
+.navbar {
+    background-color: #ffffff !important; /* 白色導覽列背景 */
+    box-shadow: 0 2px 4px rgba(0,0,0,.08); /* 輕微的陰影效果 */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #007bff !important; /* 品牌名稱使用主要藍色 */
+}
+
+.navbar-nav .nav-link {
+    color: #495057 !important; /* 導覽連結顏色 */
+    transition: color 0.3s ease; /* 平滑過渡效果 */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff !important; /* 導覽連結 hover 顏色 */
+}
+
+/* 按鈕樣式 */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    transform: translateY(-1px); /* 輕微上移效果 */
+    box-shadow: 0 4px 8px rgba(0,123,255,.2);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* 卡片樣式 (筆記列表) */
+.card {
+    border: none; /* 移除預設邊框 */
+    border-radius: 10px; /* 圓角邊框 */
+    box-shadow: 0 4px 8px rgba(0,0,0,.1); /* 柔和的陰影 */
+    transition: transform 0.2s ease-in-out; /* 懸停效果 */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* 懸停時輕微上浮 */
+    box-shadow: 0 8px 16px rgba(0,0,0,.15);
+}
+
+.card-title {
+    color: #007bff; /* 筆記標題顏色 */
+    font-weight: bold;
+}
+
+.card-footer {
+    background-color: #f8f9fa; /* 頁腳背景色 */
+    border-top: 1px solid #e9ecef; /* 輕微分割線 */
+    border-bottom-left-radius: 10px; /* 底部圓角 */
+    border-bottom-right-radius: 10px;
+}
+
+/* 表單樣式 */
+.form-control {
+    border-radius: 5px; /* 圓角輸入框 */
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 .25rem rgba(0,123,255,.25);
+}
+
+/* 訊息提示 (Alerts) */
+.alert {
+    border-radius: 8px; /* 訊息框圓角 */
+    font-weight: 500;
+}
+.alert-success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+.alert-danger { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.alert-info { background-color: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+.alert-warning { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+
+/* 巨幕 (Jumbotron - Home Page) */
+.jumbotron {
+    background-color: #e9ecef; /* 淺灰色背景 */
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px; /* 圓角 */
+    text-align: center;
+}
+.jumbotron .display-4 {
+    color: #007bff; /* 標題顏色 */
+    font-weight: 300;
+}
+.jumbotron .lead {
+    color: #6c757d;
+}
+
+/* 確保 footer 不會擋住內容，如果需要的話 */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container.mt-4 {
+    flex: 1; /* 讓內容區域撐開剩餘空間 */
+}
+/* 如果你想加入頁腳，可以在 base.html 裡加 */
+/*
+footer {
+    padding: 20px 0;
+    text-align: center;
+    background-color: #343a40;
+    color: #f8f9fa;
+    margin-top: auto;
+}
+*/

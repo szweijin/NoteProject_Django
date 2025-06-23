@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}確認刪除 - 筆記應用{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">確認刪除筆記？</h4>
+        <p>您確定要刪除這篇筆記嗎？此操作無法復原。</p>
+        <hr>
+        <h5 class="mb-2">標題: {{ note.title }}</h5>
+        <p class="mb-4">內容: {{ note.content|truncatechars:200 }}</p>
+
+        <form method="post" class="d-inline"> {# 使用 d-inline 讓按鈕在同一行 #}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">確認刪除</button>
+            <a href="{% url 'note_list' %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+{% endblock %}

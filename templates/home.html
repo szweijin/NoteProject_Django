@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}首頁 - 筆記應用{% endblock %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-light rounded-3"> {# 使用 bg-light 讓巨幕背景為淺灰 #}
+        <div class="container-fluid py-5 text-center"> {# 文字置中 #}
+            <h1 class="display-5 fw-bold text-primary">歡迎來到筆記應用！</h1> {# 標題使用主要藍色 #}
+            <p class="col-md-8 fs-4 mx-auto">這是一個簡單的筆記應用程式，你可以註冊帳號，登入後新增、編輯和刪除你的個人筆記。</p>
+            {% if not user.is_authenticated %}
+                <p class="mt-4">
+                    <a class="btn btn-primary btn-lg me-2" href="{% url 'login' %}" role="button">登入</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="{% url 'register' %}" role="button">註冊</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
