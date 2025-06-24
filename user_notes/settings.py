@@ -67,7 +67,6 @@ ROOT_URLCONF = 'user_notes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 將 'DIRS': [] 改為以下內容
         'DIRS': [BASE_DIR / 'templates'], # 指向專案根目錄下的 'templates' 資料夾
         'APP_DIRS': True, # 允許 Django 在每個 App 中尋找 'templates' 資料夾
         'OPTIONS': {
@@ -117,13 +116,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
+LANGUAGE_CODE = 'zh-hant' # 將語言代碼改為繁體中文
+TIME_ZONE = 'Asia/Taipei' # 將時區改為台灣台北
+USE_I18N = True # 啟用國際化，這個通常預設就是 True
+USE_TZ = True # 啟用時區，這個通常預設也是 True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -133,9 +129,8 @@ STATIC_URL = 'static/'
 # 這個設定告訴 Django 在開發時去哪裡尋找靜態檔案
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# 告訴 collectstatic 命令將所有靜態檔案收集到哪裡
-# 這個目錄通常會在專案根目錄下，且不同於 STATICFILES_DIRS
-STATIC_ROOT = BASE_DIR / 'staticfiles_collected' # 可以是任何你喜歡的名稱
+# 告訴 collectstatic 命令將所有靜態檔案收集到哪裡 命名可自訂
+STATIC_ROOT = BASE_DIR / 'staticfiles_collected' 
 
 
 # Default primary key field type
@@ -144,9 +139,3 @@ STATIC_ROOT = BASE_DIR / 'staticfiles_collected' # 可以是任何你喜歡的�
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# ... 其他設定 ...
-
-LANGUAGE_CODE = 'zh-hant' # 將語言代碼改為繁體中文
-TIME_ZONE = 'Asia/Taipei' # 將時區改為台灣台北
-USE_I18N = True # 啟用國際化，這個通常預設就是 True
-USE_TZ = True # 啟用時區，這個通常預設也是 True
