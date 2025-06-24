@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)tqf*n5q-&6965@^i(p$oql7)ec8&_yqf9b6ev=h9#*j*pu@a@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True' # 從環境變數讀取 DEBUG，預設為 True (開發用)
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ['https://noteproject-django.onrender.com', 'localhost', '127.0.0.1']
 
 # 新增這行，確保能接受 Render 的域名
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
