@@ -52,6 +52,14 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 ```
+會出現
+```bash
+使用者名稱: (自訂)
+電子郵件: (可略)
+Password: (輸入時不會出現字元，只要輸入完按 enter 即可)
+Password (again): (同上)
+Superuser created successfully.
+```
 
 ### 6\. 運行開發伺服器
 
