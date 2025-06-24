@@ -9,14 +9,14 @@
     </div>
 
     {% if notes %}
-        <div class="row"> {# 使用 Bootstrap 的網格系統 #}
+        <div class="row"> 
             {% for note in notes %}
-                <div class="col-md-6 col-lg-4 mb-4"> {# 在中等螢幕每行顯示2個，大螢幕顯示3個 #}
-                    <div class="card h-100"> {# 讓卡片高度一致 #}
+                <div class="col-md-6 col-lg-4 mb-4"> 
+                    <div class="card h-100"> 
                         <div class="card-body">
                             <h5 class="card-title">{{ note.title }}</h5>
                             <p class="card-text text-muted small">建立時間: {{ note.created_at|date:"Y-m-d H:i" }}</p>
-                            <p class="card-text">{{ note.content|truncatechars:150 }}</p> {# 顯示前 150 字元 #}
+                            <p class="card-text">{{ note.content|truncatechars:150 }}</p> 
                         </div>
                         <div class="card-footer bg-transparent border-top-0 d-flex justify-content-end">
                             <a href="{% url 'note_update' note.pk %}" class="btn btn-sm btn-outline-primary me-2">編輯</a>
