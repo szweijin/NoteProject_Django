@@ -135,10 +135,10 @@ USE_TZ = True # 啟用時區，這個通常預設也是 True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles_collected'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # 指向 `static` 資料夾
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_collected') # 絕對路徑
 
-# 用於 WhiteNoise 壓縮和快取靜態檔案
+# WhiteNoise 儲存後端
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
