@@ -43,12 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
-    'rest_framework.authtoken',
-    'rest_framework',
-    'djoser',
+    # 確保這一行只存在一次，並且在 whitenoise.runserver_nostatic 之前
+    'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic', # 這行確保在本地開發時 WhiteNoise 接管靜態文件
+
+    # 你的應用程式
     'notes',
-    'whitenoise.runserver_nostatic', # 用於生產環境提供靜態檔案
+
+    # 第三方應用程式 (請確認你有安裝這些，如果沒有可以刪除對應的行)
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'widget_tweaks',
 ]
 
 REST_FRAMEWORK = {
@@ -62,13 +68,13 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # 這行必須在 SecurityMiddleware 之後
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # 務必放在 SecurityMiddleware 之後
 ]
 
 ROOT_URLCONF = 'user_notes.urls'
@@ -97,8 +103,8 @@ WSGI_APPLICATION = 'user_notes.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3', # 開發時使用 SQLite
-        conn_max_age=600 # 連接最大壽命
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
     )
 }
 
