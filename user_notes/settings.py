@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)tqf*n5q-&6965@^i(p$oql7)ec8&_yqf9b6ev=h9#*j*pu@a@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True' # 從環境變數讀取 DEBUG，預設為 True (開發用)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+
+# 新增這行，確保能接受 Render 的域名
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -41,6 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'notes',
+    'whitenoise.runserver_nostatic', # 用於生產環境提供靜態檔案
+    'django.contrib.staticfiles',
 ]
 
 REST_FRAMEWORK = {
@@ -60,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # 務必放在 SecurityMiddleware 之後
 ]
 
 ROOT_URLCONF = 'user_notes.urls'
@@ -87,10 +97,10 @@ WSGI_APPLICATION = 'user_notes.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3', # 開發時使用 SQLite
+        conn_max_age=600 # 連接最大壽命
+    )
 }
 
 
@@ -126,11 +136,18 @@ USE_TZ = True # 啟用時區，這個通常預設也是 True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# 這個設定告訴 Django 在開發時去哪裡尋找靜態檔案
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles_collected'
 
-# 告訴 collectstatic 命令將所有靜態檔案收集到哪裡 命名可自訂
-STATIC_ROOT = BASE_DIR / 'staticfiles_collected' 
+# 用於 WhiteNoise 壓縮和快取靜態檔案
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Default primary key field type
