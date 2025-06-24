@@ -13,13 +13,13 @@
 - **Django 模板前端**：基本的網頁介面，用於直接在瀏覽器中操作。
 - **響應式設計**：使用 Bootstrap 5 確保在不同設備上的良好體驗。
 
-## 如何運行此專案 (給其他人的說明)
+## 如何運行此專案 
 
 ### 1. 克隆儲存庫
 
 ```bash
-git clone [https://github.com/你的用戶名/你的儲存庫名稱.git](https://github.com/你的用戶名/你的儲存庫名稱.git)
-cd 你的儲存庫名稱
+git clone [https://github.com/szweijin/NoteProject_Django.git](https://github.com/szweijin/NoteProject_Django.git)
+cd NoteProject_Django
 ````
 
 ### 2\. 創建並激活虛擬環境
