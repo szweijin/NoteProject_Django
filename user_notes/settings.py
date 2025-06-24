@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'djoser',
     'notes',
     'whitenoise.runserver_nostatic', # 用於生產環境提供靜態檔案
-    'django.contrib.staticfiles',
 ]
 
 REST_FRAMEWORK = {
